@@ -9,10 +9,10 @@ export default function Index() {
     <View style={styles.container}>
       <LottieView style={styles.animation}
         source={require("../../assets/animations/splash.json")}
-         autoPlay loop={false}
-         onAnimationFinish={()=>{
+        autoPlay loop={false}
+        onAnimationFinish={() => {
           router.replace('/onboarding')
-         }} />
+        }} />
     </View>
   );
 }

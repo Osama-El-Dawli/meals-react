@@ -1,102 +1,71 @@
-import Feather from "@expo/vector-icons/Feather";
-import { useState } from "react";
+import { useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, StyleSheet, View } from "react-native";
+import OnboardingActions from "./onboarding-actions";
+import PageIndicator from "./page-indicator";
+import TextPagerView, {
+  type TextPagerViewRef,
+} from "./text-pager-view";
 
-import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
+import type { OnboardingContainerProps } from "../types/onboarding";
 
-type Props = {
-    title: string;
-    description: string;
-    style?: ViewStyle;
-};
+export default function OnBoardingContainer({
+  pages,
+  pageIndex,
+  onPageSelected,
+  onNext,
+  onSkip,
+}: OnboardingContainerProps) {
+  const pagerRef = useRef<TextPagerViewRef>(null);
+  const { i18n } = useTranslation();
+  const scrollProgress = useRef(new Animated.Value(0)).current;
 
-export default function OnBoardingContainer(
-    { title, description, style }: Props) {
-    const [isLast, setIsLast] = useState(false);
+  const isLast = pageIndex === pages.length - 1;
+  const isRTL = i18n.language.startsWith("ar");
 
-    return (
-        <View style={[styles.container, style]}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.description}>{description}</Text>
-            <View style={styles.dotContainer}>
-                <View style={[styles.dot, styles.activeDot]}></View>
-                <View style={styles.dot}></View>
-                <View style={styles.dot}></View>
-            </View>
-            {
-                !isLast ? (
-                    <View style={styles.buttonsContainer}>
-                        <Pressable>
-                            <Text style={styles.btn}>Next</Text>
-                        </Pressable>
-                        <Pressable>
-                            <Text style={styles.btn}>Skip</Text>
-                        </Pressable>
-                    </View>) :
-                    (<View style={styles.arrowBtn}>
-                        <Pressable>
-                            <Feather name="arrow-right" size={24} color="#FE8C00E5" />
-                        </Pressable>
-                    </View>)
-            }
-        </View>
-    );
+  function handleNext() {
+    if (isLast) {
+      onNext();
+      return;
+    }
+
+    pagerRef.current?.setPage(pageIndex + 1);
+  }
+
+  return (
+    <View style={styles.container}>
+      <TextPagerView
+        scrollProgress={scrollProgress}
+        ref={pagerRef}
+        pages={pages}
+        onPageSelected={onPageSelected}
+      />
+
+      <PageIndicator
+        count={pages.length}
+        scrollProgress={scrollProgress}
+      />
+
+      <OnboardingActions
+        isLast={isLast}
+        isRTL={isRTL}
+        onNext={handleNext}
+        onSkip={onSkip}
+      />
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-    container: {
-        margin: 32,
-        padding: 32,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 48,
-        backgroundColor: '#FE8C00E5',
-        maxHeight: 400
-    },
-    title: {
-        color: 'white',
-        fontSize: 32,
-        fontWeight: 'semibold',
-        marginBottom: 16,
-        textAlign: 'center',
-    },
-    description: {
-        color: 'white',
-        fontSize: 14,
-        fontWeight: 'regular',
-        textAlign: 'center',
-        marginBottom: 40,
-    },
-    dotContainer: {
-        flexDirection: 'row',
-        gap: 8,
-        marginBottom: 100,
-    },
-    dot: {
-        width: 24,
-        height: 8,
-        backgroundColor: '#C2C2C2',
-        borderRadius: 100
-    },
-    activeDot: {
-        width: 24,
-        height: 8,
-        borderRadius: 100,
-        backgroundColor: 'white'
-    },
-    buttonsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%'
-    },
-    btn: {
-        color: 'white',
-        fontSize: 14,
-        fontWeight: 'semibold'
-    },
-    arrowBtn: {
-        backgroundColor: 'white',
-        borderRadius: 100,
-        padding: 20
-    }
+  container: {
+    position: "absolute",
+    bottom: 40,
+    left: 32,
+    right: 32,
+    height: 400,
+    padding: 32,
+    borderRadius: 48,
+    backgroundColor: "#FE8C00E5",
+    alignItems: "center",
+  },
 });

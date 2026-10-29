@@ -1,3 +1,4 @@
+import { LANGUAGE_KEY } from '@/consts/app-consts'
 import ar from '@/localization/locals/ar.json'
 import en from '@/localization/locals/en.json'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -5,7 +6,6 @@ import { getLocales } from 'expo-localization'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
-const LANGUAGE_KEY = 'app_language'
 
 export async function initializeI18n() {
     const savedLanuage = await AsyncStorage.getItem(LANGUAGE_KEY);
