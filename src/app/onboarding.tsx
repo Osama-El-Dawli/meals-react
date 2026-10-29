@@ -93,12 +93,11 @@ const styles = StyleSheet.create({
   },
   langBtn: {
     position: "absolute",
-    zIndex: 10,
     backgroundColor: "orange",
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 12,
-    top: 32,
+    top: 50,
   },
   btnEnd: {
     right: 16,

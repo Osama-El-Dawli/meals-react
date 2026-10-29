@@ -59,7 +59,7 @@ export default TextPagerView;
 const styles = StyleSheet.create({
   textPager: {
     width: "100%",
-    height: 150,
+    height: 180,
   },
   textPage: {
     flex: 1,

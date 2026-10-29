@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 14,
     fontWeight: "600",
+    marginTop: 20
   },
   arrowBtn: {
     backgroundColor: "white",
