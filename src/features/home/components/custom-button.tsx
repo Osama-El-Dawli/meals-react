@@ -1,16 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 type CustomButtonProps = {
   text: string,
+  onPress: () => void | Promise<void>
 };
 
-export default function CustomButton({ text }: CustomButtonProps) {
+export default function CustomButton({ text, onPress }: CustomButtonProps) {
 
 
   return (
-    <View style={styles.btn}>
+    <Pressable onPress={onPress} style={styles.btn}>
       <Text style={styles.text}>{text}</Text>
-    </View>
+    </Pressable>
   );
 }
 

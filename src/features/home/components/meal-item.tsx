@@ -10,7 +10,9 @@ export default function MealItem({ meal }: Props) {
   const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <Image source={meal.image}
+      <Image source={{uri: meal.imageUrl }}
+      width={56}
+      height={56}
         style={styles.image} />
       <View style={styles.textContainer}>
         <Text style={styles.title}>{meal.name}</Text>
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   textContainer: {
-    marginLeft: 16,
+    marginStart: 16,
   },
   title: {
     fontSize: 16,

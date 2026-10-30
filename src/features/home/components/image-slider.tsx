@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   ImageSourcePropType,
   StyleSheet,
@@ -19,12 +20,15 @@ export default function ImageSlider({
   interval = 5000,
 }: Props) {
   const { width } = useWindowDimensions();
+  const { i18n } = useTranslation()
   const height = 180;
+  const isRtl = i18n.language === 'ar';
 
   return (
     <View style={styles.container}>
       <Carousel<ImageSourcePropType>
         data={images}
+        autoplayDirection={isRtl ? 'backward' : 'forward'}
         style={{ width, height }}
         loop
         autoplay={autoPlay}

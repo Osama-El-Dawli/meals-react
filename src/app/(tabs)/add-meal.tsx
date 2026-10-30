@@ -1,26 +1,28 @@
 import AddMealForm from "@/features/home/components/add-meal-form";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 
 export default function AddMealScreen() {
-    return (
-        <KeyboardAvoidingView style={styles.container}
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
-        >
-            <ScrollView
-                contentContainerStyle={{ paddingBottom: 120 }}
-                keyboardShouldPersistTaps="handled"
-                showsVerticalScrollIndicator={false}>
-                <AddMealForm />
-            </ScrollView>
-        </KeyboardAvoidingView>
-    )
+  return (
+    <KeyboardAwareScrollView
+      style={styles.container}
+      contentContainerStyle={styles.scrollContent}
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={false}
+    >
+      <AddMealForm />
+    </KeyboardAwareScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 16,
-        paddingHorizontal: 24,
-    }
+  container: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 16,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingBottom: 24,
+  },
 });
