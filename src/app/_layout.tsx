@@ -70,12 +70,12 @@ export default function RootLayout() {
         direction: isRTL ? "rtl" : "ltr",
       }}
     >
-      <Toast />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="onboarding" />
         <Stack.Screen name="(tabs)" />
       </Stack>
+      <Toast position='bottom' bottomOffset={60} />
     </GestureHandlerRootView>
   );
 }
