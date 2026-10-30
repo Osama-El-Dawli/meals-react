@@ -1,8 +1,7 @@
-import { initializeI18n } from "@/localization/i18n";
+import i18n, { initializeI18n } from "@/localization/i18n";
 import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, I18nManager, View } from "react-native";
-import i18n from "@/localization/i18n";
 
 export default function RootLayout() {
   const [ready, setReady] = useState(false);

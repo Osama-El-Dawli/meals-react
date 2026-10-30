@@ -1,3 +1,5 @@
+import { ONBOARDING_SHOWN_KEY } from "@/consts/app-consts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
 import { StyleSheet, View } from "react-native";
@@ -10,8 +12,12 @@ export default function Index() {
       <LottieView style={styles.animation}
         source={require("../../assets/animations/splash.json")}
         autoPlay loop={false}
-        onAnimationFinish={() => {
-          router.replace('/onboarding')
+        onAnimationFinish={async () => {
+          if (await AsyncStorage.getItem(ONBOARDING_SHOWN_KEY) == 'false') {
+            router.replace('/onboarding');
+          } else {
+            router.replace('/(tabs)/home');
+          }
         }} />
     </View>
   );

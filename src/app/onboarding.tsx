@@ -1,4 +1,4 @@
-import { LANGUAGE_KEY } from "@/consts/app-consts";
+import { LANGUAGE_KEY, ONBOARDING_SHOWN_KEY } from "@/consts/app-consts";
 import OnBoardingContainer from "@/features/onboarding/components/onboarding-container";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
@@ -41,15 +41,17 @@ export default function OnboardingScreen() {
     setPageIndex(index);
   }
 
-  function handleNext() {
+  async function handleNext() {
     if (pageIndex < pages.length - 1) {
       goToPage(pageIndex + 1);
     } else {
+      await AsyncStorage.setItem(ONBOARDING_SHOWN_KEY, JSON.stringify(true));
       router.replace('/(tabs)/home');
     }
   }
 
-  function handleSkip() {
+  async function handleSkip() {
+    await AsyncStorage.setItem(ONBOARDING_SHOWN_KEY, JSON.stringify(true));
     router.replace('/(tabs)/home');
   }
 
