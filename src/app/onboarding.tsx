@@ -45,13 +45,13 @@ export default function OnboardingScreen() {
     if (pageIndex < pages.length - 1) {
       goToPage(pageIndex + 1);
     } else {
-      await AsyncStorage.setItem(ONBOARDING_SHOWN_KEY, JSON.stringify(true));
+      await AsyncStorage.setItem(ONBOARDING_SHOWN_KEY, 'true');
       router.replace('/(tabs)/home');
     }
   }
 
   async function handleSkip() {
-    await AsyncStorage.setItem(ONBOARDING_SHOWN_KEY, JSON.stringify(true));
+    await AsyncStorage.setItem(ONBOARDING_SHOWN_KEY, 'true');
     router.replace('/(tabs)/home');
   }
 

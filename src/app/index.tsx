@@ -13,10 +13,11 @@ export default function Index() {
         source={require("../../assets/animations/splash.json")}
         autoPlay loop={false}
         onAnimationFinish={async () => {
-          if (await AsyncStorage.getItem(ONBOARDING_SHOWN_KEY) == 'false') {
-            router.replace('/onboarding');
-          } else {
+          const onBoadingShown = await AsyncStorage.getItem(ONBOARDING_SHOWN_KEY);
+          if (onBoadingShown === 'true') {
             router.replace('/(tabs)/home');
+          } else {
+            router.replace('/onboarding');
           }
         }} />
     </View>
