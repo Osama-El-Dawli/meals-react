@@ -10,5 +10,16 @@
   "My Meals": "My Meals",
   "Home": "Home",
   "Add Meal": "Add Meal",
-  "Calories": "Calories"
+  "Calories": "Calories",
+  "Change Language": "Change Language",
+  "Profile": "Profile",
+  "Meal Name": "Meal Name",
+  "Image URL": "Image URL",
+  "Rate": "Rate",
+  "Time": "Time",
+  "Description": "Description",
+  "Save": "Save",
+  "Meal Saved Successfully!": "Meal Saved Successfully!",
+  "Failed to save meal.": "Failed to save meal.",
+  "Enter": "Enter"
 }

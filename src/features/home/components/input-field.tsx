@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   KeyboardTypeOptions,
   StyleSheet,
@@ -28,7 +29,9 @@ export default function InputField({
   onChangeText
 }: Props) {
   const [isFocused, setIsFocused] = useState(false);
+  const { t } = useTranslation();
 
+  const resolvedPlaceholder = placeholder ?? `${t('Enter')} ${title.toLowerCase()}`;
   const isMultiline = numberOfLines > 1;
 
   return (
@@ -41,7 +44,7 @@ export default function InputField({
         onBlur={() => setIsFocused(false)}
         selectionHandleColor="#FE8C00"
         cursorColor="#FE8C00"
-        placeholder={placeholder}
+        placeholder={resolvedPlaceholder}
         multiline={isMultiline}
         keyboardType={keyboardType}
         onChangeText={onChangeText}

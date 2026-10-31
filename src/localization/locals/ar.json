@@ -10,5 +10,16 @@
   "My Meals": "وجباتي",
   "Add Meal": "إضافة وجبة",
   "Home": "الرئيسية",
-  "Calories": "كالوري"
+  "Calories": "كالوري",
+  "Change Language": "تغيير اللغة",
+  "Profile": "الملف الشخصي",
+  "Meal Name": "اسم الوجبة",
+  "Image URL": "رابط الصورة",
+  "Rate": "التقييم",
+  "Time": "الوقت",
+  "Description": "الوصف",
+  "Save": "حفظ",
+  "Meal Saved Successfully!": "تم حفظ الوجبة بنجاح!",
+  "Failed to save meal.": "فشل في حفظ الوجبة.",
+  "Enter": "ادخل"
 }

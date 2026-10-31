@@ -1,13 +1,16 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
-import Toast from "react-native-toast-message";
+import Toast from 'react-native-simple-toast';
 import { Meal, MealFormValues, mealSchema } from "../models/meal-model";
 import { saveMeal } from "../services/meals-storage";
 import CustomButton from "./custom-button";
 import InputField from "./input-field";
 
+
 export default function AddMealForm() {
+  const { t } = useTranslation();
   const {
     control,
     handleSubmit,
@@ -30,17 +33,12 @@ export default function AddMealForm() {
       await saveMeal(data);
       reset();
 
-      Toast.show({
-        type: "success",
-        text1: "Success",
-        text2: "Meal saved successfully!",
-      });
+      Toast.show(t('Meal Saved Successfully!'), Toast.BOTTOM);
     } catch {
-      Toast.show({
-        type: "error",
-        text1: "Error",
-        text2: "Failed to save meal.",
-      });
+      Toast.show(
+        t('Failed to save meal.'),
+        Toast.BOTTOM
+      );
     }
   }
   return (
@@ -50,7 +48,7 @@ export default function AddMealForm() {
         name="name"
         render={({ field }) => (
           <InputField
-            title="Meal Name"
+            title={t("Meal Name")}
             value={field.value}
             onChangeText={field.onChange}
             error={errors.name?.message}
@@ -63,7 +61,7 @@ export default function AddMealForm() {
         name="imageUrl"
         render={({ field }) => (
           <InputField
-            title="Image URL"
+            title={t("Image URL")}
             numberOfLines={3}
             value={field.value}
             onChangeText={field.onChange}
@@ -77,7 +75,7 @@ export default function AddMealForm() {
         name="calories"
         render={({ field }) => (
           <InputField
-            title="Calories"
+            title={t("Calories")}
             keyboardType="number-pad"
             value={field.value}
             onChangeText={field.onChange}
@@ -91,7 +89,7 @@ export default function AddMealForm() {
         name="rate"
         render={({ field }) => (
           <InputField
-            title="Rate"
+            title={t("Rate")}
             keyboardType="decimal-pad"
             value={field.value}
             onChangeText={field.onChange}
@@ -105,7 +103,7 @@ export default function AddMealForm() {
         name="time"
         render={({ field }) => (
           <InputField
-            title="Time"
+            title={t("Time")}
             value={field.value}
             onChangeText={field.onChange}
             error={errors.time?.message}
@@ -118,7 +116,7 @@ export default function AddMealForm() {
         name="description"
         render={({ field }) => (
           <InputField
-            title="Description"
+            title={t("Description")}
             numberOfLines={5}
             value={field.value}
             onChangeText={field.onChange}
@@ -128,9 +126,8 @@ export default function AddMealForm() {
       />
       <View style={{ marginTop: 12 }}>
         <CustomButton onPress={handleSubmit(onSubmit)}
-          text="Save" />
+          text={t("Save")} />
       </View>
     </View>
   );
 }
-
