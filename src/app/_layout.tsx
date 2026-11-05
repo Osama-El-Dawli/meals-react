@@ -51,7 +51,17 @@ export default function RootLayout() {
         <Stack.Screen name="index" />
         <Stack.Screen name="onboarding" />
         <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="meal-details" />
+        <Stack.Screen
+          name="meal-details"
+          options={{
+            headerShown: true,
+            headerTitleAlign: "center",
+            headerTitle: i18n.t("Meal Details"),
+            headerShadowVisible: false,
+            headerBackButtonDisplayMode: "minimal",
+            headerTintColor: "#121A0F",
+          }}
+        />
       </Stack>
     </GestureHandlerRootView>
   );
